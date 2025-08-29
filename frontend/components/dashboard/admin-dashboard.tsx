@@ -31,17 +31,17 @@ export function AdminDashboard() {
       const token = localStorage.getItem("token")
 
       // Fetch hotels
-      const hotelsResponse = await fetch("http://localhost:8080/api/hotels", {
+      const hotelsResponse = await fetch(`${API_URL}/hotels`, {
         headers: { Authorization: `Bearer ${token}` },
       })
 
       // Fetch users
-      const usersResponse = await fetch("http://localhost:8080/api/users/all", {
+      const usersResponse = await fetch(`${API_URL}/users/all`, {
         headers: { Authorization: `Bearer ${token}` },
       })
 
       // Fetch bookings
-      const bookingsResponse = await fetch("http://localhost:8080/api/bookings", {
+      const bookingsResponse = await fetch(`${API_URL}/bookings`, {
         headers: { Authorization: `Bearer ${token}` },
       })
 

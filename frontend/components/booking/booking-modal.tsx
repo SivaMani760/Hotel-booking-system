@@ -1,6 +1,6 @@
 // components/booking/booking-modal.tsx
 "use client"
-
+import API_URL from "@/components/config";
 import { useState, useEffect } from "react"
 import { useAuth } from "@/hooks/use-auth"
 import { Button } from "@/components/ui/button"
@@ -60,7 +60,7 @@ export function BookingModal({ hotel, isOpen, onClose, onBookingSuccess }: Booki
   const fetchRooms = async () => {
     try {
       setRoomsLoading(true);
-      const response = await fetch(`http://localhost:8080/api/rooms/hotel/${hotel.id}`);
+      const response = await fetch(`${API_URL}/rooms/hotel/${hotel.id}`);
       if (response.ok) {
         const data = await response.json();
         const fetchedRooms: Room[] = data.roomList || [];
@@ -84,7 +84,7 @@ export function BookingModal({ hotel, isOpen, onClose, onBookingSuccess }: Booki
     await Promise.all(
       roomList.map(async (room: Room) => {
         try {
-          const res = await fetch(`http://localhost:8080/api/bookings/room/${room.id}`, {
+          const res = await fetch(`${API_URL}/bookings/room/${room.id}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 
@@ -161,7 +161,7 @@ export function BookingModal({ hotel, isOpen, onClose, onBookingSuccess }: Booki
       };
 
       // Call the new initiate endpoint
-      const response = await fetch("http://localhost:8080/api/bookings/initiate", {
+      const response = await fetch(`${API_URL}/bookings/initiate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -220,7 +220,7 @@ export function BookingModal({ hotel, isOpen, onClose, onBookingSuccess }: Booki
       };
 
       // Call the new finalize endpoint
-      const response = await fetch(`http://localhost:8080/api/bookings/finalize`, {
+      const response = await fetch(`${API_URL}/bookings/finalize`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

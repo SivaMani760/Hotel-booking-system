@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import API_URL from "@/components/config";
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -70,7 +70,7 @@ export function HotelManagement({ onStatsUpdate }: HotelManagementProps) {
   const fetchHotels = async () => {
     try {
       const token = localStorage.getItem("token")
-      const response = await fetch("http://localhost:8080/api/hotels", {
+      const response = await fetch(`${API_URL}/hotels`, {
         headers: { Authorization: `Bearer ${token}` },
       })
 
@@ -94,8 +94,8 @@ export function HotelManagement({ onStatsUpdate }: HotelManagementProps) {
     try {
       const token = localStorage.getItem("token")
       const url = editingHotel
-        ? `http://localhost:8080/api/hotels/${editingHotel.id}`
-        : "http://localhost:8080/api/hotels"
+        ? `${API_URL}/hotels/${editingHotel.id}`
+        : `${API_URL}/hotels`
 
       const method = editingHotel ? "PUT" : "POST"
 
@@ -139,7 +139,7 @@ export function HotelManagement({ onStatsUpdate }: HotelManagementProps) {
 
     try {
       const token = localStorage.getItem("token")
-      const response = await fetch("http://localhost:8080/api/rooms", {
+      const response = await fetch(`${API_URL}/rooms`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -190,7 +190,7 @@ export function HotelManagement({ onStatsUpdate }: HotelManagementProps) {
 
     try {
       const token = localStorage.getItem("token")
-      const response = await fetch(`http://localhost:8080/api/hotels/${hotelId}`, {
+      const response = await fetch(`${API_URL}/hotels/${hotelId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       })

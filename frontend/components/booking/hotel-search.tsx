@@ -1,5 +1,5 @@
 "use client"
-
+import API_URL from "@/components/config";
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -31,7 +31,7 @@ export function HotelSearch({ onBookingSuccess }: HotelSearchProps) {
 
   const fetchHotels = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/hotels")
+      const response = await fetch(`${API_URL}/hotels`)
       if (response.ok) {
         const data = await response.json()
         setHotels(data.hotelList || [])

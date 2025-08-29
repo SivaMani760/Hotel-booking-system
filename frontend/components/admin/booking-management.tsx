@@ -1,6 +1,7 @@
 // components/admin/booking-management.tsx
 "use client"
 
+import API_URL from "@/components/config";
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -43,7 +44,7 @@ export function BookingManagement({ onStatsUpdate }: BookingManagementProps) {
     setActionSuccess(null);
     try {
       const token = localStorage.getItem("token")
-      const response = await fetch("http://localhost:8080/api/bookings", {
+      const response = await fetch(`${API_URL}/bookings`, {
         headers: { Authorization: `Bearer ${token}` },
       })
 
@@ -75,7 +76,7 @@ export function BookingManagement({ onStatsUpdate }: BookingManagementProps) {
 
       const updatedBooking = { ...booking, status: newStatus };
 
-      const response = await fetch(`http://localhost:8080/api/bookings/${bookingId}`, {
+      const response = await fetch(`${API_URL}/bookings/${bookingId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +108,7 @@ export function BookingManagement({ onStatsUpdate }: BookingManagementProps) {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:8080/api/bookings/${bookingId}`, {
+      const response = await fetch(`${API_URL}/bookings/${bookingId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

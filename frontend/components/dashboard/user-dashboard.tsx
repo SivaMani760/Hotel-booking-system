@@ -1,5 +1,5 @@
 "use client"
-
+import API_URL from "@/components/config";
 import { useState, useEffect } from "react"
 import { useAuth } from "@/hooks/use-auth"
 import { Button } from "@/components/ui/button"
@@ -23,7 +23,7 @@ export function UserDashboard() {
   const fetchUserBookings = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:8080/api/users/${user?.id}/bookings`, {
+      const response = await fetch(`${API_URL}/users/${user?.id}/bookings`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

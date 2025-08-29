@@ -1,5 +1,5 @@
 "use client"
-
+import API_URL from "@/components/config";
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -29,7 +29,7 @@ export function UserManagement({ onStatsUpdate }: UserManagementProps) {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("token")
-      const response = await fetch("http://localhost:8080/api/users/all", {
+      const response = await fetch(`${API_URL}/users/all`, {
         headers: { Authorization: `Bearer ${token}` },
       })
 
@@ -64,7 +64,7 @@ export function UserManagement({ onStatsUpdate }: UserManagementProps) {
 
     try {
       const token = localStorage.getItem("token")
-      const response = await fetch(`http://localhost:8080/api/users/${userId}`, {
+      const response = await fetch(`${API_URL}/users/${userId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       })

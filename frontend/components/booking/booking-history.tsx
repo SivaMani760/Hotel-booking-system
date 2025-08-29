@@ -1,6 +1,6 @@
 // components/booking/booking-history.tsx
 "use client"
-
+import API_URL from "@/components/config";
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -56,7 +56,7 @@ export function BookingHistory({ bookings, loading, onRefresh }: BookingHistoryP
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:8080/api/bookings/${bookingId}/cancel`, {
+      const response = await fetch(`${API_URL}/bookings/${bookingId}/cancel`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export function BookingHistory({ bookings, loading, onRefresh }: BookingHistoryP
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:8080/api/bookings/${bookingId}`, {
+      const response = await fetch(`${API_URL}/bookings/${bookingId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
