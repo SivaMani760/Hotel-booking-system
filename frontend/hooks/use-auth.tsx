@@ -1,5 +1,5 @@
 "use client"
-
+import API_URL from "@/components/config";
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 
 interface User {
@@ -19,7 +19,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-const API_BASE_URL = "http://localhost:8080/api"
+const API_BASE_URL = `${API_URL}`
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
