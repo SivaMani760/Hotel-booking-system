@@ -14,7 +14,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")  
-                        .allowedOrigins("https://hotel-booking-frontend-xxxx.onrender.com")  
+                        .allowedOrigins("https://hotel-booking-system-3f3q.onrender.com")  
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);  
